@@ -8,7 +8,6 @@ except ValueError:
     print('Введено некорректное число')
     exit()
 summary = 0
-for v in range(0, x):
+for v in range(1, x):
     summary += v
 print(summary)
-

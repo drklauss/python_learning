@@ -2,12 +2,15 @@
 
 x = input('Введите число: ')
 try:
-    int(x)
+    x = int(x)
 except ValueError:
     print('Введено некорректное число')
     exit()
-multiply = 1
-for v in tuple(x):
-    multiply *= int(v)
-print(multiply)
 
+multiply = 1
+while x > 10:
+    rest = x % 10
+    multiply *= rest
+    x = x // 10
+multiply *= x
+print(multiply)

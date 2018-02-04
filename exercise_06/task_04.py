@@ -15,6 +15,6 @@ maxValue = 0
 for i in myList:
     if i > maxValue:
         maxValue = i
-print('1.Максимальное значение: ', maxValue)
+print('1.Максимальное значение: {}; Индекс: {}'.format(maxValue, myList.index(maxValue)))
 # Второй способ
-print('2.Максимальное значение: ', max(myList))
+print('2.Максимальное значение: {}; Индекс: {}'.format(max(myList), myList.index(maxValue)))
