@@ -1,3 +1,6 @@
-x = 20
+x = y = 50
+print(x is y)
+x += 1
+print(x is y)
+print(x,y)
 
-print(x if 0 < x < 10 else 50)
