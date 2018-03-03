@@ -2,12 +2,12 @@
 
 text = input('Введите предложение: ')
 
-wordsCount = 0
+words_count = 0
 isPreLastAlpha = False
 for letter in text:
     isAlpha = letter.isalpha()
     if not isAlpha and isPreLastAlpha:
-        wordsCount += 1
+        words_count += 1
     isPreLastAlpha = isAlpha
-print('Слов в предложении: ', wordsCount)
+print('Слов в предложении: ', words_count)
 

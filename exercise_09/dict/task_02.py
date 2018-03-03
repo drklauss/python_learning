@@ -15,6 +15,7 @@ SEQUENCE_LEN = 100000
 
 
 def calc_unique_nums() -> int:
+    """Генерирует список уникальных значений по условию задачи"""
     result = {}
     num_list = [random.randint(SEQ_VAL_START, SEQ_VAL_END) for _ in range(SEQUENCE_LEN)]
     for one_value in num_list:
@@ -26,6 +27,7 @@ def calc_unique_nums() -> int:
 
 
 def get_unique_dict() -> dict:
+    """Возвращает словарь, содержащий сгенерированные значения и их встречаемость"""
     unique_dict = {}
     for v in range(0, ITERATIONS):
         uniq = calc_unique_nums()
@@ -37,6 +39,7 @@ def get_unique_dict() -> dict:
 
 
 def calc_probability(un_dict: dict):
+    """Высчитывает вероятность выпаденения чисел по заданному условию"""
     res = {}
     for k, v in un_dict.items():
         res[k] = "{:.2f}%".format(v / ITERATIONS * 100)
