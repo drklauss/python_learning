@@ -1,4 +1,5 @@
 import math
+import time
 
 HUMAN_VIEW_X = {
     'a': 0,
@@ -23,7 +24,9 @@ class Algorithm:
 
     def run(self):
         print("Поиск решений: {} -> {}".format(self._start_pt, self._aim_pt))
+        self._stat.set_start_time()
         self.stepping(self._start_pt, 0)
+        self._stat.set_end_time()
         self.print_result()
 
     def stepping(self, pt: 'Point', step: int):
@@ -65,18 +68,18 @@ class Algorithm:
     def print_result(self):
         """Вывод результата на печать"""
         self._stat.print()
-        print("Лучшее решение: ", end='')
-        for solution in self._solutions:
-            if len(solution) == self._solution_steps:
+        print("Лучшее решение: ")
+        for sequence in self._solutions:
+            if len(sequence) == self._solution_steps:
                 print()
-                for sequence in solution:
-                    print(sequence, end=' ')
+                for point in sequence:
+                    print(point, end=' ')
         print("\rЕще варианты: ", end='')
-        for solution in self._solutions[len(self._solutions)-1::-1]:
-            if len(solution) != self._solution_steps:
+        for sequence in self._solutions[len(self._solutions) - 1::-1]:
+            if len(sequence) != self._solution_steps:
                 print()
-                for sequence in solution:
-                    print(sequence, end=' ')
+                for point in sequence:
+                    print(point, end=' ')
 
 
 class Point:
@@ -165,13 +168,22 @@ class Statistic:
     def __init__(self):
         self.possible_points = list()
         self.steps = 0
+        self.startTime = 0
+        self.endTime = 0
+
+    def set_start_time(self):
+        self.startTime = time.clock()
+
+    def set_end_time(self):
+        self.endTime = time.clock()
 
     def set_pos_points(self, pts: tuple):
         self.possible_points.extend(pts)
 
     def print(self):
-        print("Потребовалось шагов: {} ".format(self.steps))
-        print("Обработано потенциальных ходов: {} ".format(len(self.possible_points)))
+        print("Время выполнения: {0:.3f}с. ".format(self.endTime - self.startTime))
+        print("Попыток походить: {} ".format(self.steps))
+        print("Потенциальных ходов: {} ".format(len(self.possible_points)))
 
     def inc_step(self):
         self.steps += 1
