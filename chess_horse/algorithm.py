@@ -71,15 +71,12 @@ class Algorithm:
         print("Лучшее решение: ")
         for sequence in self._solutions:
             if len(sequence) == self._solution_steps:
-                print()
-                for point in sequence:
-                    print(point, end=' ')
-        print("\rЕще варианты: ", end='')
-        for sequence in self._solutions[len(self._solutions) - 1::-1]:
-            if len(sequence) != self._solution_steps:
-                print()
-                for point in sequence:
-                    print(point, end=' ')
+                print(sequence)
+        if len(self._solutions) > 1:
+            print("Еще варианты: ")
+            for sequence in self._solutions[len(self._solutions) - 1::-1]:
+                if len(sequence) != self._solution_steps:
+                    print(sequence)
 
 
 class Point:
@@ -95,6 +92,9 @@ class Point:
         for k, v in HUMAN_VIEW_X.items():
             if v == self.x:
                 return '{}{}'.format(k, self.y + 1)
+
+    def __repr__(self):
+        return str(self)
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
