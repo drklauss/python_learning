@@ -1,19 +1,25 @@
-# Создать класс Rectangle, конструктор которого принимает длину и ширину.
-# Класс должен иметь два метода, вычисляющие площадь и периметр прямоугольника.
+# Написать класс калькулятора, хранящего вещественное число x и понимающего следующие команды:
+#
+# прибавить к этому числу значение параметра,  вычесть из него, домножить его и разделить,
+# а также извлечь из этого числа квадратный корень
+# и взять тригонометрическую функцию. Написать еще один класс, кроме перечисленного имеющий одно свойство
+# и понимающий команды записать в память, извлечь из памяти, добавить x к содержимому памяти.
 
 
-class Rectangle:
-    def __init__(self, length: float, width: float):
-        self.length = length
-        self.width = width
+class Memory:
+    def __init__(self):
+        self._num = 0.00
 
-    def area(self) -> float:
-        return round(self.length * self.width)
+    @property
+    def num(self):
+        return self._num
 
-    def perimeter(self) -> float:
-        return round(2 * (self.length + self.width))
+    @num.setter
+    def num(self, value):
+        self._num = value
 
+    @num.deleter
+    def num(self):
+        del self._num
 
-NewRect = Rectangle(2, 3)
-print(NewRect.area())
-print(NewRect.perimeter())
+class Calculator(Memory):
