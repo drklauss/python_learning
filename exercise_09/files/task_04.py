@@ -14,7 +14,7 @@ def get_line() -> iter:
 def generate_dict() -> dict:
     """Создает и возвращает словарь для декодирования"""
     codes_dict = {}
-    re_compile = re.compile("(\w|\W)\s(\d{3})")
+    re_compile = re.compile(r"(\w|\W)\s(\d{3})")
     for ln in get_line():
         ls = re.findall(re_compile, ln).pop()
         codes_dict[ls[1]] = ls[0]
@@ -23,7 +23,7 @@ def generate_dict() -> dict:
 
 def decode_text(txt: str, codes_dict: dict) -> list:
     """Возвращает список декодированных символов"""
-    chars_encoded = re.findall("\d{3}", txt)
+    chars_encoded = re.findall(r"\d{3}", txt)
     result = []
     for char in chars_encoded:
         try:
